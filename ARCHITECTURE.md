@@ -324,8 +324,22 @@ platforms checked at that time.
 dependency + `.vercelignore`; README deployment section rewritten
 for Neon + Vercel (Render kept as alternative). Verified locally:
 the Mangum handler returns 200 for `/api/v1/health`, `/`, and
-`/sitemap.xml`. No live deployment has been done yet — that needs
-Aqdas's GitHub, Vercel, and Neon accounts.
+`/sitemap.xml`. Live deployment done 2026-11-25 (GitHub
+akdss-AI/SitePilot-AI → Vercel project sitepilot-ai,
+https://sitepilot-ai-plum.vercel.app).
+
+**Deployment fix (2026-11-25):** first live deploy returned 500
+FUNCTION_INVOCATION_FAILED on every route. Vercel runtime logs
+showed `ModuleNotFoundError: No module named 'psycopg'` at
+`create_engine`: SQLAlchemy 2.1 changed the default driver for
+bare `postgresql://` URLs from psycopg2 to `psycopg` (v3), which
+is not installed. Local tests had passed only because they use
+`postgresql+psycopg2://` explicitly. Fix: `app/db/session.py`
+now normalizes any bare `postgresql://` / `postgres://` URL to
+`postgresql+psycopg2://` before `create_engine` (covers the app
+and `scripts/seed_demo.py`, which imports the same engine), with
+regression tests in `tests/test_config.py`. Reproduced the
+failure with SQLAlchemy 2.1.9 in a scratch venv before fixing.
 
 ---
 
