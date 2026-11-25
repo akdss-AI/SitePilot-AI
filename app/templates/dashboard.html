@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — SitePilot AI{% endblock %}
+{% block content %}
+<section>
+  <h1>Dashboard</h1>
+  <p>Good morning, {{ user.full_name or user.email }}. Here is what needs
+     attention across your projects today.</p>
+</section>
+
+<section class="stat-row">
+  <article class="stat"><strong>{{ overdue_count }}</strong><span>overdue tasks</span></article>
+  <article class="stat"><strong>{{ low_stock_count }}</strong><span>low-stock materials</span></article>
+  <article class="stat"><strong>{{ critical_high_issues_count }}</strong><span>critical / high issues</span></article>
+  <article class="stat"><strong>{{ open_issues_count }}</strong><span>open issues</span></article>
+</section>
+
+<section>
+  <h2>Your projects</h2>
+  {% if projects %}
+  <ul class="project-list">
+    {% for project in projects %}
+    <li><a href="/projects/{{ project.id }}">{{ project.name }}</a>
+      — {{ project.status.value }}{% if project.location %} · {{ project.location }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No projects yet. Create one from the API to get started.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Overdue tasks</h2>
+  {% if overdue_tasks %}
+  <ul>
+    {% for task in overdue_tasks %}
+    <li>{{ task.title }}{% if task.due_date %} — due {{ task.due_date }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Nothing overdue. Good work.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Low-stock materials</h2>
+  {% if low_stock_materials %}
+  <ul>
+    {% for material in low_stock_materials %}
+    <li>{{ material.name }} — {{ material.quantity_on_hand }} {{ material.unit }} on hand (reorder at {{ material.reorder_level }})</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No low-stock materials.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Open critical / high issues</h2>
+  {% if critical_high_issues %}
+  <ul>
+    {% for issue in critical_high_issues %}
+    <li><strong>{{ issue.priority.value }}</strong> — {{ issue.title }} ({{ issue.category.value }})</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No open critical or high issues.</p>
+  {% endif %}
+</section>
+{% endblock %}

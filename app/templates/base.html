@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ app_name }}{% endblock %}</title>
+  <meta name="description" content="SitePilot AI — simple AI-powered operations follow-up for construction contractors and property developers. Track materials, tasks, site issues and delays.">
+  <meta property="og:title" content="SitePilot AI — Construction Operations Follow-up Assistant">
+  <meta property="og:description" content="Simple AI-powered operations systems for construction contractors and property developers — tracking materials, labor, site issues, payments, quotations, and project delays.">
+  <meta property="og:type" content="website">
+  {% block meta %}{% endblock %}
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <strong><a href="/">SitePilot AI</a></strong>
+      <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/login">Log in</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <div class="container">SitePilot AI — demo system. All data shown is fictional.</div>
+  </footer>
+</body>
+</html>

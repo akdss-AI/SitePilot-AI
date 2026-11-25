@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}SitePilot AI — Construction Operations Follow-up Assistant{% endblock %}
+{% block meta %}
+  <meta property="og:url" content="/">
+  <meta property="og:site_name" content="SitePilot AI">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SitePilot AI — Construction Operations Follow-up Assistant">
+  <meta name="twitter:description" content="Simple AI-powered operations systems for construction contractors and property developers.">
+{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Construction operations follow-up, without the chaos.</h1>
+  <p class="positioning">I build simple AI-powered operations systems for
+     construction contractors and property developers — tracking materials,
+     labor, site issues, payments, quotations, and project delays.</p>
+  <p>SitePilot AI is that system in action: a manager opens one dashboard
+     each morning, sees what is overdue, what is about to run out, and what
+     needs attention on site — and turns a plain-language site update into
+     structured, validated actions.</p>
+  <p><a class="button" href="/login">Log in to your dashboard</a></p>
+  <p class="phase-note">Demo system — all data shown is fictional. No live
+     customers, no real projects.</p>
+</section>
+
+<section class="features">
+  <h2>What it does</h2>
+  <div class="feature-grid">
+    <article>
+      <h3>Materials &amp; stock alerts</h3>
+      <p>Know what is on site, what arrived, and what is about to run out —
+         with low-stock alerts computed from real quantities.</p>
+    </article>
+    <article>
+      <h3>Tasks &amp; overdue follow-up</h3>
+      <p>Deadlines, tasks due today, and what is coming up in the next
+         7 days — overdue items surface until they are done.</p>
+    </article>
+    <article>
+      <h3>Site issues</h3>
+      <p>Issues by category and priority, critical and high first, so the
+         urgent ones never hide at the bottom of a list.</p>
+    </article>
+    <article>
+      <h3>LLM site updates</h3>
+      <p>Describe the day in ordinary words. SitePilot proposes structured
+         changes, validates them, and only applies what is permitted —
+         never raw SQL, never an unvalidated write.</p>
+    </article>
+    <article>
+      <h3>Daily summary</h3>
+      <p>One view per project, generated fresh each morning from live data:
+         delays, shortages, open issues, upcoming tasks, pending deliveries.</p>
+    </article>
+  </div>
+</section>
+
+<section class="pricing">
+  <h2>Pricing</h2>
+  <p>Simple pricing for small contractors and property developers.</p>
+  <div class="pricing-grid">
+    <article class="price-card">
+      <h3>Starter</h3>
+      <p class="price">$29<span>/month</span></p>
+      <ul>
+        <li>1 project, 2 sites</li>
+        <li>Materials &amp; stock alerts</li>
+        <li>Tasks &amp; daily summary</li>
+      </ul>
+    </article>
+    <article class="price-card featured">
+      <h3>Professional</h3>
+      <p class="price">$79<span>/month</span></p>
+      <ul>
+        <li>5 projects, unlimited sites</li>
+        <li>Everything in Starter</li>
+        <li>Site issues &amp; LLM site updates</li>
+      </ul>
+    </article>
+    <article class="price-card">
+      <h3>Business</h3>
+      <p class="price">$199<span>/month</span></p>
+      <ul>
+        <li>Unlimited projects</li>
+        <li>Everything in Professional</li>
+        <li>Priority support &amp; onboarding help</li>
+      </ul>
+    </article>
+  </div>
+  <p class="fine-print">Billing is manual in v1: there is no payment
+     gateway and no subscription enforcement in this version — plans are
+     activated manually. Prices shown are for illustration of the
+     product's pricing, not a live checkout.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}{{ summary.project_name }} — SitePilot AI{% endblock %}
+{% block content %}
+<section>
+  <h1>{{ summary.project_name }}</h1>
+  <p>Daily summary for {{ summary.date }} — generated from live data.</p>
+  <p><a href="/dashboard">&larr; Back to dashboard</a></p>
+</section>
+
+<section class="stat-row">
+  <article class="stat"><strong>{{ summary.overdue_count }}</strong><span>overdue tasks</span></article>
+  <article class="stat"><strong>{{ summary.due_today_count }}</strong><span>due today</span></article>
+  <article class="stat"><strong>{{ summary.upcoming_count }}</strong><span>upcoming ({{ summary.upcoming_days }} days)</span></article>
+  <article class="stat"><strong>{{ summary.low_stock_count }}</strong><span>low-stock materials</span></article>
+  <article class="stat"><strong>{{ summary.open_issues_count }}</strong><span>open issues</span></article>
+  <article class="stat"><strong>{{ summary.pending_deliveries_count }}</strong><span>pending deliveries</span></article>
+</section>
+
+<section>
+  <h2>Overdue tasks</h2>
+  {% if summary.overdue_tasks %}
+  <ul>{% for task in summary.overdue_tasks %}
+    <li>{{ task.title }}{% if task.due_date %} — due {{ task.due_date }}{% endif %}</li>
+  {% endfor %}</ul>
+  {% else %}<p>Nothing overdue.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Due today</h2>
+  {% if summary.due_today_tasks %}
+  <ul>{% for task in summary.due_today_tasks %}
+    <li>{{ task.title }}</li>
+  {% endfor %}</ul>
+  {% else %}<p>Nothing due today.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Upcoming tasks</h2>
+  {% if summary.upcoming_tasks %}
+  <ul>{% for task in summary.upcoming_tasks %}
+    <li>{{ task.title }}{% if task.due_date %} — due {{ task.due_date }}{% endif %}</li>
+  {% endfor %}</ul>
+  {% else %}<p>Nothing upcoming in the next {{ summary.upcoming_days }} days.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Low-stock materials</h2>
+  {% if summary.low_stock_materials %}
+  <ul>{% for material in summary.low_stock_materials %}
+    <li>{{ material.name }} — {{ material.quantity_on_hand }} {{ material.unit }} on hand (reorder at {{ material.reorder_level }})</li>
+  {% endfor %}</ul>
+  {% else %}<p>No low-stock materials.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Open issues</h2>
+  {% if summary.open_issues %}
+  <ul>{% for issue in summary.open_issues %}
+    <li><strong>{{ issue.priority.value }}</strong> — {{ issue.title }} ({{ issue.category.value }})</li>
+  {% endfor %}</ul>
+  {% else %}<p>No open issues.</p>{% endif %}
+</section>
+
+{% if summary.recent_updates %}
+<section>
+  <h2>Recent site updates</h2>
+  <ul>{% for update in summary.recent_updates %}
+    <li>{{ update.summary or update.raw_text[:120] }} — {{ update.status.value }}</li>
+  {% endfor %}</ul>
+</section>
+{% endif %}
+{% endblock %}

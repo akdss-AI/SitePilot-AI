@@ -1,0 +1,23 @@
+# Phase 1 — Foundation
+fastapi
+uvicorn[standard]
+SQLAlchemy
+psycopg2-binary
+pydantic
+pydantic-settings
+Jinja2
+
+# Testing
+pytest
+httpx
+
+# Phase 2 — Auth (announced in Phase 2 summary, not added silently)
+bcrypt
+PyJWT
+email-validator
+python-multipart
+
+# Deployment — Vercel serverless adapter (Phase 7, Neon + Vercel path).
+# Mangum adapts the FastAPI app to Vercel's Python serverless runtime;
+# nothing in app/ depends on it. Local dev still uses uvicorn.
+mangum
